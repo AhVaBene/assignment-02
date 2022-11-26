@@ -1,16 +1,14 @@
-#ifndef __TIMER__
-#define __TIMER__
+#ifndef TIMER_H
+#define TIMER_H
 
-class Timer {
-    
-public:  
-  Timer();
-  void setupFreq(int freq);  
-  /* period in ms */
-  void setupPeriod(int period);  
-  void waitForNextTick();
+#include<TimerOne.h>
 
+class Timer{
+    public:
+    Timer();
+    void setupInitialFreq(unsigned long period);
+    void setupPeriod(unsigned long period);
+    void waitForNextTick();
 };
-
 
 #endif

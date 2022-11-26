@@ -21,5 +21,5 @@ float SonarImpl::getDistance(){
   float tUS = pulseIn(echoPin, HIGH);
   float t = tUS / 1000.0 / 1000.0 / 2;
   float d = t*vs;
-  return d;
+  return d*100.0f;
 }

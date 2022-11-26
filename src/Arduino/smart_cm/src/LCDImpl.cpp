@@ -1,28 +1,21 @@
 #include "LCDImpl.h"
 #include "Arduino.h"
 
-LCDImpl::LCDImpl(){
-  lcd.init();
-  lcd.backlight();
-}
+LCDImpl::LCDImpl(){};
 
 void LCDImpl::pre_alarm_display(int waterLevel){
-  lcd.display();
-  lcd.setCursor(0, 1);
-  lcd.print("PRE ALARM STATE");
-  lcd.setCursor(0,2);
-  lcd.print(String("Water Level = ") + waterLevel);
+  this->lcd->setUpLCD();
+  lcd->write(0, 0, String("Water Level = ") + String(waterLevel));
+  lcd->write(0, 1, "PRE ALARM STATE");
 }
 
 void LCDImpl::alarm_display(int waterLevel, int valveDegrees){
-  lcd.setCursor(0, 1);
-  lcd.print("ALARM STATE");
-  lcd.setCursor(0,2);
-  lcd.print(String("Water Level = ") + waterLevel);
-  lcd.setCursor(0,3);
-  lcd.print(String("Valve Degrees = ") + valveDegrees);
+  lcd->setUpLCD();
+  lcd->write(0, 0, String("Water Level=") + String(waterLevel));
+  lcd->write(0, 1, String("Valve Deg. = ") + String(valveDegrees));
+  lcd->write(1, 2, String("ALARM STATE"));
 }
 
 void LCDImpl::normal_display(){
-  lcd.noDisplay();
+    lcd->turnOffLCD();
 }
